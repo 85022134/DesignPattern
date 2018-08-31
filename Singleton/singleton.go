@@ -6,25 +6,25 @@ import (
 	"sync"
 )
 
-var single *Singleton
+var single *singleton
 
-type Singleton struct {
+type singleton struct {
 	name string
 }
 
-func (s *Singleton) SetName(name string) {
+func (s *singleton) SetName(name string) {
 	s.name = name
 }
 
-func (s *Singleton) GetName() string {
+func (s *singleton) GetName() string {
 	return s.name
 }
 
 var once sync.Once
 
-func GetSingleton() *Singleton {
+func GetSingleton() *singleton {
 	once.Do(func() {
-		single = &Singleton{name: "initName"}
+		single = &singleton{name: "initName"}
 	})
 	return single
 }
